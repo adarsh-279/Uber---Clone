@@ -16,6 +16,8 @@ userRoute.post('/login', [
     body('password').isLength({ min: 6 }).withMessage('Password must be atleast 6 characters long'),
 ], userController.loginUser)
 
+userRoute.get("/logout", authMiddleware.authUser, userController.logoutUser);
+
 userRoute.get('/profile', authMiddleware.authUser, userController.getUserProfile)
 
 export default userRoute
