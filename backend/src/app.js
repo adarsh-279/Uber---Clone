@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import userRoute from "./routes/user.routes.js";
 
 dotenv.config();
 
@@ -8,10 +9,15 @@ const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 8000;
 
+app.use(express.json())
+app.use(express.urlencoded({ extented: true}))
+
 // Routes
 app.get("/", (req, res) => {
     res.send("Default Route");
 });
+
+app.use("/users", userRoute)
 
 // Start the server
 app.listen(PORT, () => {
