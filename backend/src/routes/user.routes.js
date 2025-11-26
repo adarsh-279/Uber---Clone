@@ -10,4 +10,9 @@ userRoute.post('/register', [
     body('fullname.firstName').isLength({ min: 3}).withMessage('First name must be atleast 3 characters long')
 ], userController.registerUser)
 
+userRoute.post('/login', [
+    body('email').isEmail().withMessage('Inavlid email'),
+    body('password').isLength({ min: 6 }).withMessage('Password must be atleast 6 characters long'),
+], userController.loginUser)
+
 export default userRoute
