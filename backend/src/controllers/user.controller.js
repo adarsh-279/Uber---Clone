@@ -41,7 +41,11 @@ export default {
         }
 
         const token = user.generateAuthToken();
+        res.cookie('token', token)
         res.status(200).json({ user, token });
     },
 
+    getUserProfile: async (req, res, next) => {
+        res.status(200).json({message: req.user})
+    }
 }

@@ -1,6 +1,7 @@
 import express from 'express'
 import { body } from 'express-validator'
 import userController from '../controllers/user.controller.js'
+import authMiddleware from '../middlewares/auth.middleware.js'
 
 const userRoute = express.Router()
 
@@ -14,5 +15,7 @@ userRoute.post('/login', [
     body('email').isEmail().withMessage('Inavlid email'),
     body('password').isLength({ min: 6 }).withMessage('Password must be atleast 6 characters long'),
 ], userController.loginUser)
+
+userRoute.get('/profile', authMiddleware.authUser, userController.getUserProfile)
 
 export default userRoute
