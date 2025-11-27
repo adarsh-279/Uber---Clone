@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser"
 import userRoute from "./routes/user.routes.js";
+import captainRoute from "./routes/captain.routes.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRoute)
+app.use("/captains", captainRoute)
 
 // Start the server
 app.listen(PORT, () => {
