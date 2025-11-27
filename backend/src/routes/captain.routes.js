@@ -14,4 +14,9 @@ captainRoute.post('/register', [
     body('vehicle.vehicleType').notEmpty().withMessage('Vehicle type is required'),
 ], captainController.registerCaptain)
 
+captainRoute.post('/login', [
+    body('email').isEmail().withMessage('Inavlid email'),
+    body('password').isLength({ min: 6 }).withMessage('Password must be atleast 6 characters long'),
+], captainController.loginCaptain )
+
 export default captainRoute
