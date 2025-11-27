@@ -22,4 +22,6 @@ captainRoute.post('/login', [
 
 captainRoute.get("/logout", authMiddleware.authCaptain, captainController.logoutCaptain);
 
+captainRoute.get("/profile", authMiddleware.authCaptain, captainController.getCaptainProfile);
+
 export default captainRoute

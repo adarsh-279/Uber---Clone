@@ -63,5 +63,9 @@ export default {
         await blacklistTokenModel.create({ token })
         
         res.status(200).json({ message: "Logged out successfully"})
+    },
+
+    getCaptainProfile: async (req, res, next) => {
+        res.status(200).json({message: req.captain})
     }
 }
