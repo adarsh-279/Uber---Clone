@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: Uber-Medium;
+    src: url('./assets/UberMoveMedium.otf');
+}
