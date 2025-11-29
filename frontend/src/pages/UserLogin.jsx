@@ -1,28 +1,43 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { UserDataContext } from "../context/UserContext";
+import { useContext } from "react";
 
 const UserLogin = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [userData, setuserData] = useState('')
+    const [ userData, setUserData ] = useState({})
 
-    const submitHandler = (e) =>{
+    const { user, setUser } = useContext(UserDataContext);
+    const navigate = useNavigate();
+
+    const submitHandler = async (e) =>{
         e.preventDefault()
-        setuserData({
+        const userData = {
             email: email,
             password: password
-        })
+        }
+
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`,userData);
+
+        if (response.status === 200) {
+            const data = response.data;
+            setUser(data.user);
+            localStorage.setItem('token', data.token)
+            navigate("/home");
+        }
+
         setEmail('')
         setPassword('')
-    }
+
+        };
 
     return (
         <div className='h-screen w-full pt-10 px-5 flex flex-col font-[Uber-Medium]'>
             <img className='h-7 w-[20%] mb-10' src="https://freelogopng.com/images/all_img/1659761100uber-logo-png.png" alt="" />
-            <form onSubmit={(e) => {
-                submitHandler;
-            }} className='w-full'>
+            <form onSubmit={submitHandler} className='w-full'>
                 <h1 className='text-2xl mb-3'>Enter your email</h1>
                 <input required
                     type="email"
