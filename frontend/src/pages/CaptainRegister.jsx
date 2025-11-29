@@ -25,13 +25,13 @@ const CaptainRegister = () => {
   };
 
   return (
-    <div className="h-screen w-full pt-10 px-5 flex flex-col">
+    <div className="h-screen w-full pt-5 px-5 flex flex-col font-[Uber-Medium]">
       <img
-        className="h-8 w-[20%] mb-10"
-        src="https://freelogopng.com/images/all_img/1659761100uber-logo-png.png"
+        className="h-28 w-[30%]"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwKKtljUlhsADs-8uWgaQ5i0_D_3kh594nnvkG5FCJsY4gERJYXPk9JT8u30R4kdV4Kg&usqp=CAU"
         alt=""
       />
-      <form onSubmit={submitHandler} className="w-full font-[Uber-Medium]">
+      <form onSubmit={submitHandler} className="w-full">
         <h1 className="text-2xl mb-3">What's your Name</h1>
         <div className="w-full flex flex-row items-center justify-between">
           <input

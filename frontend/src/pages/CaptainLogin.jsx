@@ -17,17 +17,17 @@ const CaptainLogin = () => {
   };
 
   return (
-    <div className="h-screen w-full pt-10 px-5 flex flex-col">
+    <div className="h-screen w-full pt-5 px-5 flex flex-col font-[Uber-Medium]">
       <img
-        className="h-8 w-[20%] mb-10"
-        src="https://freelogopng.com/images/all_img/1659761100uber-logo-png.png"
+        className="h-28 w-[30%]"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwKKtljUlhsADs-8uWgaQ5i0_D_3kh594nnvkG5FCJsY4gERJYXPk9JT8u30R4kdV4Kg&usqp=CAU"
         alt=""
       />
       <form
         onSubmit={(e) => {
           submitHandler;
         }}
-        className="w-full font-[Uber-Medium]"
+        className="w-full"
       >
         <h1 className="text-2xl mb-3">Enter your email</h1>
         <input
@@ -56,7 +56,8 @@ const CaptainLogin = () => {
         </button>
       </form>
       <h3 className="text-center mt-3">
-        New here? <Link to="/captain/register" className="text-blue-600">
+        New here?{" "}
+        <Link to="/captain/register" className="text-blue-600">
           Create new Account
         </Link>
       </h3>
@@ -66,7 +67,7 @@ const CaptainLogin = () => {
       </h3>
       <Link
         to="/user/login"
-        className="flex items-center justify-center py-5 w-full bg-[#001554] text-white text-xl rounded-xl mt-75"
+        className="flex items-center justify-center py-5 w-full bg-[#001554] text-white text-xl rounded-xl mt-65"
       >
         Log In as a User
       </Link>

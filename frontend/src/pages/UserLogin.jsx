@@ -18,11 +18,11 @@ const UserLogin = () => {
     }
 
     return (
-        <div className='h-screen w-full pt-10 px-5 flex flex-col'>
-            <img className='h-8 w-[20%] mb-10' src="https://freelogopng.com/images/all_img/1659761100uber-logo-png.png" alt="" />
+        <div className='h-screen w-full pt-10 px-5 flex flex-col font-[Uber-Medium]'>
+            <img className='h-7 w-[20%] mb-10' src="https://freelogopng.com/images/all_img/1659761100uber-logo-png.png" alt="" />
             <form onSubmit={(e) => {
                 submitHandler;
-            }} className='w-full font-[Uber-Medium]'>
+            }} className='w-full'>
                 <h1 className='text-2xl mb-3'>Enter your email</h1>
                 <input required
                     type="email"
@@ -45,7 +45,7 @@ const UserLogin = () => {
             </form>
             <h3 className='text-center mt-3'>New here? <Link to='/user/register' className='text-blue-600'>Create new Account</Link></h3>
             <h3 className='mt-10 opacity-50'>By continuing, you agree to emails or texts from Uber and its affiliates.</h3>
-            <Link to='/captain/login' className='flex items-center justify-center py-5 w-full bg-[#001554] text-white text-xl rounded-xl mt-75'>Log In as a Captain</Link>
+            <Link to='/captain/login' className='flex items-center justify-center py-5 w-full bg-[#001554] text-white text-xl rounded-xl mt-70'>Log In as a Captain</Link>
         </div>
     )
 }
