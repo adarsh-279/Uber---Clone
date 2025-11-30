@@ -1,27 +1,58 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CaptainDataContext } from "../context/CaptainContext";
+import axios, { Axios } from "axios";
 
 const CaptainRegister = () => {
+
+  const navigate = useNavigate()
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [captainData, setCaptainData] = useState({});
+  const [vehicleColor, setVehicleColor] = useState("");
+  const [vehiclePlate, setVehiclePlate] = useState("");
+  const [vehicleCapacity, setVehicleCapacity] = useState("");
+  const [vehicleType, setVehicleType] = useState("");
 
-  const submitHandler = (e) => {
+  const {captain, setCaptain} = useContext(CaptainDataContext)
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setCaptainData({
+
+    const captainData = {
       fullname: {
-        firstName: firstName,
-        lastName: lastName,
+        firstName,
+        lastName,
       },
-      email: email,
-      password: password,
-    });
+      email,
+      password,
+      vehicle: {
+        color: vehicleColor,
+        plate: vehiclePlate,
+        capacity: Number(vehicleCapacity),
+        vehicleType,
+      },
+    };
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, captainData)
+
+    if (response.status === 201) {
+      const data = response.data
+      setCaptain(data.captain)
+      localStorage.setItem('token', data.token)
+      navigate('/captain-home')
+    }
+
     setFirstName("");
     setLastName("");
     setEmail("");
     setPassword("");
+    setVehicleColor("")
+    setVehiclePlate("")
+    setVehicleCapacity("")
+    setVehicleType("")
   };
 
   return (
@@ -76,6 +107,47 @@ const CaptainRegister = () => {
           placeholder="password"
           className="hover:border rounded-xl px-5 py-3 w-full text-lg bg-[#eeeeee]"
         />
+        <h1 className="text-2xl mb-3 mt-2">Enter your vehicle details</h1>
+        <div className="w-full grid grid-cols-2 gap-3">
+          <input
+            required
+            type="text"
+            value={vehicleColor}
+            onChange={(e) => {
+              setVehicleColor(e.target.value);
+            }}
+            placeholder="color"
+            className="hover:border rounded-xl px-5 py-3 text-lg bg-[#eeeeee] mb-1"
+          />
+          <input
+            type="text"
+            value={vehiclePlate}
+            onChange={(e) => {
+              setVehiclePlate(e.target.value.toUpperCase());
+            }}
+            placeholder="no. plate"
+            className="uppercase placeholder:normal-case hover:border rounded-xl px-5 py-3 text-lg bg-[#eeeeee] mb-1"
+          />
+            <input
+              type="text"
+              value={vehicleType}
+              onChange={(e) => {
+                setVehicleType(e.target.value);
+              }}
+              placeholder="car, bike, scooter"
+              className="hover:border rounded-xl px-5 py-3 text-lg bg-[#eeeeee] mb-3"
+            />
+          <input
+            required
+            type="number"
+            value={vehicleCapacity}
+            onChange={(e) => {
+              setVehicleCapacity(Number(e.target.value));
+            }}
+            placeholder="capacity"
+            className="hover:border rounded-xl px-5 py-3 text-lg bg-[#eeeeee] mb-3"
+          />
+        </div>
         <button className="flex items-center justify-center py-5 w-full bg-black text-white text-xl rounded-xl mt-6">
           Sign Up
         </button>
