@@ -1,5 +1,5 @@
 import captainModel from "../models/captain.model.js";
-import captainServices from "../services/captain.services.js";
+import captainServices from "../services/captain.service.js";
 import { validationResult } from "express-validator";
 import blacklistTokenModel from "../models/blacklistToken.model.js";
 
@@ -11,25 +11,28 @@ export default {
         }
 
         const { fullname, email, password, vehicle } = req.body
-        
-        const existCaptain = await captainModel.findOne({ email })
-        if (existCaptain) {
-            res.status(400).json({message: "Captain already exists"});
+
+        try {
+            const captain = await captainServices.createCaptain({
+                fullname,
+                email,
+                password,
+                vehicle,
+            })
+
+            const token = captain.generateAuthToken();
+            res.status(201).json({ captain, token });
+            console.log(req.body);
+        } catch (err) {
+            // Known/client errors from service carry `statusCode`
+            if (err && err.statusCode) {
+                return res.status(err.statusCode).json({ message: err.message })
+            }
+            // Unexpected errors
+            console.error('Register captain error:', err)
+            return res.status(500).json({ message: 'Internal server error' })
         }
 
-        const captain = await captainServices.createCaptain({
-            firstName: fullname.firstName,
-            lastName: fullname.lastName,
-            email,
-            password,
-            color: vehicle.color,
-            plate: vehicle.plate,
-            vehicleType: vehicle.vehicleType,
-            capacity: vehicle.capacity
-        })
-
-        const token = captain.generateAuthToken();
-        res.status(201).json({ captain, token });
     },
 
     loginCaptain: async (req, res, next) => {
