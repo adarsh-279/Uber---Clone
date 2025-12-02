@@ -22,7 +22,6 @@ export default {
 
             const token = captain.generateAuthToken();
             res.status(201).json({ captain, token });
-            console.log(req.body);
         } catch (err) {
             // Known/client errors from service carry `statusCode`
             if (err && err.statusCode) {
