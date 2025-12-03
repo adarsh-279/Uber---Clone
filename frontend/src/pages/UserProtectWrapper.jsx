@@ -1,8 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from "react";
 import { UserDataContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import axios from 'axios'
 
 const UserProtectWrapper = ({ children }) => {
 
@@ -16,7 +15,7 @@ const UserProtectWrapper = ({ children }) => {
             navigate('/user/login')
         }
 
-        axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`, {
+        axios.get(`${import.meta.env.VITE_BASE_URL}/users/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
