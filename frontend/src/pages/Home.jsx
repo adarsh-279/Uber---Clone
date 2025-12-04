@@ -1,5 +1,6 @@
 import React from 'react'
 import "remixicon/fonts/remixicon.css";
+import Navigation from '../components/Navigation';
 
 const Home = () => {
   const items = [
@@ -24,51 +25,113 @@ const Home = () => {
       title: "Courier",
     },
     {
-      img: "",
+      img: "Reserve",
       title: "Reserve",
     },
     {
-      img: "",
+      img: "Rentals",
       title: "Rentals",
     },
     {
-      img: "",
+      img: "Intercity",
       title: "Intercity",
     },
   ];
 
+  const uberOne = [
+    {
+      img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTEO5pf0zJArv_HwAOoXoAfSPddqI3xDsNwHhiiypt_LEWGL8Of",
+      heading: "Uber One gets you more",
+      title: "Top-rated drivers",
+      subtitle: "Exceptional service on trips",
+    },
+    {
+      img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSYDraA01hhPZc7Rg7YiSPKN336X3WgDYCHp9c-H92QQqgqd4PQ",
+      heading: "Elevate your ride",
+      title: "Request Go Sedan",
+      subtitle: "Comfortably affordable sedans",
+    },
+    {
+      img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTV51NrC4qEdGJalZBDhsV3PKes2Q2H9zv7G7Rbae4Pho2XO-yQ",
+      heading: "Plan your next trip",
+      title: "Travel intercity",
+      subtitle: "Exceptional service on trips",
+    },
+  ];
+
   return (
-    <div className="h-full w-full p-3 font-[Uber-Medium]">
-      <img className="h-9 w-[20%] ml-3 mt-13" src="logo.png" alt="" />
-      <div className="w-full bg-[#e8e8e8] rounded-full p-3 pl-5 pr-5 flex items-center justify-between mt-10">
-        <div className="flex items-center justify-between">
-          <i className="ri-search-line font-bold text-3xl"></i>
-          <h1 className="text-xl ml-4">Where to?</h1>
-        </div>
-        <div className="flex items-center justify-between bg-white rounded-full p-2">
-          <i className="ri-calendar-event-line font-bold text-2xl"></i>
-          <h1 className="text-lg ml-4">Later</h1>
-        </div>
+    <>
+      <div className="w-full pl-5 pt-13 pb-2 fixed bg-white">
+        <img className="h-9 w-[20%]" src="logo.png" alt="" />
       </div>
-      <div className="mt-5">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl">Suggestions</h1>
-          <i className="ri-arrow-right-line text-2xl bg-[#f3f3f3] rounded-full p-2"></i>
+      <div className="h-full w-full p-3 font-[Uber-Medium]">
+        <div className="w-full bg-[#e8e8e8] rounded-full p-3 pl-5 pr-5 flex items-center justify-between mt-30">
+          <div className="flex items-center justify-between">
+            <i className="ri-search-line font-bold text-3xl"></i>
+            <h1 className="text-xl ml-4">Where to?</h1>
+          </div>
+          <div className="flex items-center justify-between bg-white rounded-full p-2">
+            <i className="ri-calendar-event-line font-bold text-2xl"></i>
+            <h1 className="text-lg ml-4">Later</h1>
+          </div>
         </div>
-        <div className="mt-6 grid grid-cols-4 gap-2">
-          {items.map((item, index) => (
-            <div key={index} className="bg-[#f3f3f3] p-4 rounded-2xl">
-              <img
-                className="w-16 h-16 rounded-full mx-auto"
-                src={item.img}
-                alt={item.title}
-              />
-              <h1 className="text-center mt-1">{item.title}</h1>
+        <div className="mt-5">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl">Suggestions</h1>
+            <i className="ri-arrow-right-line text-2xl bg-[#f3f3f3] rounded-full p-2"></i>
+          </div>
+          <div className="mt-6 grid grid-cols-4 gap-2">
+            {items.map((item, index) => (
+              <div key={index} className="bg-[#f3f3f3] p-4 rounded-2xl">
+                <img
+                  className="w-16 h-16 rounded-full mx-auto"
+                  src={item.img}
+                  alt={item.title}
+                />
+                <h1 className="text-center mt-1">{item.title}</h1>
+              </div>
+            ))}
+          </div>
+          <div className="w-full h-45 overflow-hidden flex items-center justify-between bg-[#EBD4FE] rounded-xl border-2 border-[#D6C4E6] mt-4">
+            <div className="w-[60%] p-4 gap-10 flex flex-col items-start justify-between">
+              <h1 className="text-lg font-semibold">
+                For when you need more room
+              </h1>
+              <button className="p-3 bg-white rounded-full">
+                Request Uber XL
+              </button>
             </div>
-          ))}
+            <img
+              className="object-cover w-[40%] h-full"
+              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQpsdYeQ7SsiO-MvhP7MKPHzTZwY7a5wxAZisFaCf7gBoZ0bdY3"
+              alt=""
+            />
+          </div>
+          <div className="overflow-hidden mt-2">
+            {uberOne.map((uberOne, index) => (
+              <div
+                key={index}
+                className="w-full p-2 mb-4 flex flex-col shrink-0 items-start justify-between"
+              >
+                <h1 className="text-lg font-semibold mb-2">
+                  {uberOne.heading}
+                </h1>
+                <img
+                  className="object-cover w-full h-full rounded-xl"
+                  src={uberOne.img}
+                  alt=""
+                />
+                <h1 className="text-lg mt-3">{uberOne.title}</h1>
+                <h1 className="text-md opacity-50">{uberOne.subtitle}</h1>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      <div className="w-full bottom-0 fixed bg-white">
+        <Navigation />
+      </div>
+    </>
   );
 }
 
