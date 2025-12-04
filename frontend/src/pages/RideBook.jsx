@@ -60,7 +60,7 @@ const RideBook = () => {
                     </form>
                 </div>
 
-                <div className='h-[75%]'>
+                <div className='h-[75%] bg-white'>
                     <LocationSearchPanel />
                 </div>
             </div>
