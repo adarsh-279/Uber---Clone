@@ -1,8 +1,13 @@
 import React from 'react'
 import "remixicon/fonts/remixicon.css";
 import Navigation from '../components/Navigation';
+import { useNavigate } from 'react-router-dom';
+import RideBook from './RideBook';
 
 const Home = () => {
+
+  const navigate = useNavigate()
+
   const items = [
     {
       img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSU3KL3chmwBpFis5dO2wxhpAF7UDOvrzD45XyPq4d02vNSGx0J",
@@ -59,13 +64,17 @@ const Home = () => {
     },
   ];
 
+  const rideBook = () => {
+    navigate("/ridebook")
+  }
+
   return (
     <>
       <div className="w-full pl-5 pt-13 pb-2 fixed bg-white">
         <img className="h-9 w-[20%]" src="logo.png" alt="" />
       </div>
       <div className="h-full w-full p-3 font-[Uber-Medium]">
-        <div className="w-full bg-[#e8e8e8] rounded-full p-3 pl-5 pr-5 flex items-center justify-between mt-30">
+        <div onClick={rideBook} className="w-full bg-[#e8e8e8] rounded-full p-3 pl-5 pr-5 flex items-center justify-between mt-30">
           <div className="flex items-center justify-between">
             <i className="ri-search-line font-bold text-3xl"></i>
             <h1 className="text-xl ml-4">Where to?</h1>
